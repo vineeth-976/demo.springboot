@@ -20,6 +20,8 @@ public class Welcome {
 
     @GetMapping("/login")
     public String login(Model model) {
+//        model.addAttribute("name", getLoggedInUserName());
+//        model.addAttribute("password", password);
         return "logging";
     }
 
