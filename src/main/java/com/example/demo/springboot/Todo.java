@@ -1,9 +1,13 @@
 package com.example.demo.springboot;
 
+import jakarta.validation.constraints.Size;
+
 import java.util.Objects;
 
 public class Todo {
     private int id;
+
+    @Size(min=10, message = "min size is 10")
     private String name;
     private String location;
 
