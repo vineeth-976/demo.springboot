@@ -3,14 +3,24 @@ package com.example.demo.springboot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-@Controller
-@SessionAttributes("name")
+@RestController
+@RequestMapping("/test-man")
 public class Welcome {
+
+    @Value("${orrey-swamy}")
+    private String property;
+
+    public String getProperty(){
+        return this.property;
+    }
+
+    @Autowired
+    private Config config;
 
     private Logger logger = LoggerFactory.getLogger(Application.class);
 
@@ -20,8 +30,6 @@ public class Welcome {
 
     @GetMapping("/login")
     public String login(Model model) {
-//        model.addAttribute("name", getLoggedInUserName());
-//        model.addAttribute("password", password);
         return "logging";
     }
 
@@ -44,9 +52,7 @@ public class Welcome {
     @GetMapping("/doneAfter")
     @ResponseBody
     public void doneAfter(Model model) {
-        logger.info("val-{} and val-{}",
-                model.getAttribute("name"),
-                model.getAttribute("password"));
-
+        logger.info("swamy-{} and salary-{}",
+                config.getSwamy(),config.getSalary());
     }
 }
